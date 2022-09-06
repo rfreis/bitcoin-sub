@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  bitcoin_sub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS: requirements-dev.txt
+    command: python main.py
+    container_name: bitcoin-sub
+    tty: true
+    stdin_open: true
+    ports:
+      - 28332:28332
+    volumes:
+      - .:/app
+    env_file: ./.env
+    networks:
+      - dev-tools_payment-network
+
+networks:
+  dev-tools_payment-network:
+    external: true
