@@ -8,7 +8,7 @@ from app.settings import PUB_BROKER_URL
 logger = logging.getLogger(__name__)
 
 
-pub_broker = Celery(broker=PUB_BROKER_URL)
+pub_broker = Celery("backend", broker=PUB_BROKER_URL)
 
 
 def publish_data(task_name, *args):
